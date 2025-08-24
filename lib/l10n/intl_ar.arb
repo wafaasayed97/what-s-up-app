@@ -1,0 +1,24 @@
+{
+  
+  "warning": "تحذير",
+  "success": " نجاح",
+  "error": " خطأ",
+  "choose_image_source": "اختر مصدر الصورة",
+  "camera": "كاميرا",
+  "gallery": "معرض",
+  "cancel": "إلغاء",
+  "somethingWentWrong": "حدث خطأ ما",
+  "noInternetConnection": "لا يوجد اتصال بالإنترنت",
+  "done": "تم",
+  "tryAgain": "حاول مرة أخرى",
+  "noInternet": "لا يوجد إنترنت",
+  "update": "تحديث",
+  "updateRequired": "التحديث مطلوب",
+  "updateRequiredBody": "يتوفر إصدار جديد من التطبيق. يرجى التحديث للاستمرار في استخدام التطبيق.",
+  "notNow": "ليس الآن",
+  "auth_reason":"سبب المصادقة",
+  "chats":"الدردشات",
+  "communities":"المجتمعات",
+  "calls":"المكالمات"
+
+}

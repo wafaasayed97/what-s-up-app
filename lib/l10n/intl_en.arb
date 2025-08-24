@@ -1,0 +1,22 @@
+{
+  "warning": "warning",
+  "success": "success",
+  "error": "error",
+  "choose_image_source": "Choose Image Source",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "cancel": "Cancel",
+  "somethingWentWrong": "Something went wrong",
+  "noInternetConnection": "No internet connection",
+  "done": "Done",
+  "tryAgain": "Try Again",
+  "noInternet": "No Internet",
+  "update": "Update",
+  "updateRequired": "Update Required",
+  "updateRequiredBody": "A new version of the app is available. Please update to continue using the app.",
+"notNow": "Not Now",
+"auth_reason":"auth reason",
+"chats":"Chats",
+"communities":"Communities",
+"calls":"Calls"
+}
