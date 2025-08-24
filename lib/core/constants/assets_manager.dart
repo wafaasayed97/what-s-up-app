@@ -14,6 +14,7 @@ class AssetsManager {
   static const String banan = 'banan';
 
   /// >>>>>>>>>>>>>. Svg Images
+  static const String whatsApp = 'WhatsApp';
   static const String arrowWithBg = 'arrow_with_bg';
   static const String aboutTmg = 'about_tmg';
   static const String apple = 'apple';

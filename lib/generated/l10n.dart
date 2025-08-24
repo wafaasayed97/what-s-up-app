@@ -178,6 +178,31 @@ class S {
   String get calls {
     return Intl.message('Calls', name: 'calls', desc: '', args: []);
   }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
+  }
+
+  /// `Updates`
+  String get updates {
+    return Intl.message('Updates', name: 'updates', desc: '', args: []);
+  }
+
+  /// `Ask Meta AI or Search`
+  String get askMetaAIOrSearch {
+    return Intl.message(
+      'Ask Meta AI or Search',
+      name: 'askMetaAIOrSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message('Search', name: 'search', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

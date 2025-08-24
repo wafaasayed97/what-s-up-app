@@ -7,7 +7,7 @@ import 'package:what_s_up_app/core/cache/secure_storage/secure_storage.dart';
 final sl = GetIt.instance;
 
 class ServicesLocator {
-  ServicesLocator._();
+ 
    Future<void> init() async {
    await _initSharedPreferencesStorage();
     _initFlutterSecureStorage();

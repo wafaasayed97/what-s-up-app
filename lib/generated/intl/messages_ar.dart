@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "askMetaAIOrSearch": MessageLookupByLibrary.simpleMessage(
+      "اسأل Meta AI أو ابحث",
+    ),
     "auth_reason": MessageLookupByLibrary.simpleMessage("سبب المصادقة"),
     "calls": MessageLookupByLibrary.simpleMessage("المكالمات"),
     "camera": MessageLookupByLibrary.simpleMessage("كاميرا"),
@@ -39,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا يوجد اتصال بالإنترنت",
     ),
     "notNow": MessageLookupByLibrary.simpleMessage("ليس الآن"),
+    "search": MessageLookupByLibrary.simpleMessage("بحث"),
+    "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
     "success": MessageLookupByLibrary.simpleMessage(" نجاح"),
     "tryAgain": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
@@ -47,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateRequiredBody": MessageLookupByLibrary.simpleMessage(
       "يتوفر إصدار جديد من التطبيق. يرجى التحديث للاستمرار في استخدام التطبيق.",
     ),
+    "updates": MessageLookupByLibrary.simpleMessage("التحديثات"),
     "warning": MessageLookupByLibrary.simpleMessage("تحذير"),
   };
 }

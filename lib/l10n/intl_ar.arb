@@ -19,6 +19,10 @@
   "auth_reason":"سبب المصادقة",
   "chats":"الدردشات",
   "communities":"المجتمعات",
-  "calls":"المكالمات"
+  "calls":"المكالمات",
+  "settings":"الإعدادات",
+  "updates":"التحديثات",
+  "askMetaAIOrSearch":"اسأل Meta AI أو ابحث",
+  "search":"بحث"
 
 }

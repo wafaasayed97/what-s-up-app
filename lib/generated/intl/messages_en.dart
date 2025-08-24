@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "askMetaAIOrSearch": MessageLookupByLibrary.simpleMessage(
+      "Ask Meta AI or Search",
+    ),
     "auth_reason": MessageLookupByLibrary.simpleMessage("auth reason"),
     "calls": MessageLookupByLibrary.simpleMessage("Calls"),
     "camera": MessageLookupByLibrary.simpleMessage("Camera"),
@@ -39,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "No internet connection",
     ),
     "notNow": MessageLookupByLibrary.simpleMessage("Not Now"),
+    "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
@@ -49,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateRequiredBody": MessageLookupByLibrary.simpleMessage(
       "A new version of the app is available. Please update to continue using the app.",
     ),
+    "updates": MessageLookupByLibrary.simpleMessage("Updates"),
     "warning": MessageLookupByLibrary.simpleMessage("warning"),
   };
 }

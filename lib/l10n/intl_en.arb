@@ -18,5 +18,9 @@
 "auth_reason":"auth reason",
 "chats":"Chats",
 "communities":"Communities",
-"calls":"Calls"
+"calls":"Calls",
+"settings":"Settings",
+"updates":"Updates",
+"askMetaAIOrSearch":"Ask Meta AI or Search",
+"search":"Search"
 }
