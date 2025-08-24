@@ -5,7 +5,7 @@ import 'package:what_s_up_app/core/theme/styles.dart';
 class AppErrorWidget extends StatelessWidget {
   const AppErrorWidget({super.key, required this.errorText});
 final String errorText;
-  @override
+  @override  
   Widget build(BuildContext context) {
     return Center(
       child: Column(
