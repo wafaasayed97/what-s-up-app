@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +6,17 @@ import 'package:what_s_up_app/core/app_cubit/app_state.dart';
 import 'package:what_s_up_app/core/constants/strings.dart';
 import 'package:what_s_up_app/core/theme/light_colors.dart';
 import 'package:what_s_up_app/features/chats/presentation/chats_screen.dart';
+import 'package:what_s_up_app/features/chats/presentation/cubit/chat_cubit.dart';
 import 'package:what_s_up_app/features/mainlayout/presentation/cubit/mainlayout_cubit.dart';
 import 'package:what_s_up_app/features/mainlayout/presentation/cubit/mainlayout_state.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/camera_button.dart';
 import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/floating_action_button.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/menu_button.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/plus_button.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/pop_curve.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/sliver_app_bar.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/tab_bar_config.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/theme_toggle_widget.dart';
 import 'package:what_s_up_app/generated/l10n.dart';
 
 class MainlayoutScreen extends StatefulWidget {
@@ -19,7 +26,8 @@ class MainlayoutScreen extends StatefulWidget {
   State<MainlayoutScreen> createState() => _MainlayoutScreenState();
 }
 
-class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProviderStateMixin {
+class _MainlayoutScreenState extends State<MainlayoutScreen>
+    with TickerProviderStateMixin {
   late List<AnimationController> _controllers;
   late List<Animation<double>> _scaleAnimations;
 
@@ -104,13 +112,12 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
         color: isDark ? Colors.white : Colors.black,
       ),
       Image.asset(
-       'assets/images/chats_filled.png',
+        'assets/images/chats_filled.png',
         width: 32,
         height: 32,
         color: isDark ? Colors.white : Colors.black,
       ),
       Image.asset(
-
         'assets/images/settings_filled.png',
         width: 32,
         height: 32,
@@ -125,7 +132,7 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
       Text(S().update),
       Text(S().calls),
       Text(S().communities),
-      Text(S().chats),
+      Text('WhatsApp'),
       Text(S().settings),
     ];
 
@@ -157,31 +164,36 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
               child: IndexedStack(
                 index: mainLayoutIntitalScreenIndex,
                 children: [
-                  _buildScaffoldPage(0, titles, context),
-                  _buildScaffoldPage(1, titles, context),
-                  _buildScaffoldPage(2, titles, context),
-                  _buildScaffoldPage(3, titles, context),
-                  _buildScaffoldPage(4, titles, context),
+                  _buildScaffoldPage(0, titles, context, Colors.black),
+                  _buildScaffoldPage(1, titles, context, Colors.black),
+                  _buildScaffoldPage(2, titles, context, Colors.black),
+                  _buildScaffoldPage(
+                    3,
+                    titles,
+                    context,
+                    AppLightColors.primary,
+                  ),
+                  _buildScaffoldPage(4, titles, context, Colors.black),
                 ],
               ),
             ),
-            bottomNavigationBar:
-                BlocBuilder<AppCubit, AppState>(
-                  builder: (context, themeState) {
-                    // Get current theme state
-                    final isDark = context.watch<AppCubit>().themeMode == ThemeMode.dark;
-                    final selectedIcons = _buildSelectedIcons(isDark);
+            bottomNavigationBar: BlocBuilder<AppCubit, AppState>(
+              builder: (context, themeState) {
+                // Get current theme state
+                final isDark =
+                    context.watch<AppCubit>().themeMode == ThemeMode.dark;
+                final selectedIcons = _buildSelectedIcons(isDark);
 
-                    return _buildBottomNavigationBar(
-                      titles,
-                      unselectedIcons,
-                      selectedIcons,
-                      cubit,
-                      context,
-                      isDark,
-                    );
-                  },
-                ),
+                return _buildBottomNavigationBar(
+                  titles,
+                  unselectedIcons,
+                  selectedIcons,
+                  cubit,
+                  context,
+                  isDark,
+                );
+              },
+            ),
           );
         },
       ),
@@ -192,6 +204,7 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
     int index,
     List<Text> titles,
     BuildContext context,
+    Color titleColor,
   ) {
     final currentConfig = _tabConfigurations[index] ?? const TabAppBarConfig();
 
@@ -205,6 +218,7 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
               config: currentConfig,
               titles: titles,
               currentIndex: index,
+              titleColor: titleColor,
             ),
           ];
         },
@@ -225,8 +239,7 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: isDark ? Colors.transparent : AppLightColors
-            .navBarBorder,
+            color: isDark ? Colors.transparent : AppLightColors.navBarBorder,
             width: 0.2,
           ),
         ),
@@ -274,7 +287,9 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
                 );
               },
             ),
-            label: appBarTitles[index].data,
+            label: appBarTitles[index].data == 'WhatsApp'
+                ? 'Chats'
+                : appBarTitles[index].data,
           );
         }),
       ),
@@ -290,19 +305,20 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
     switch (index) {
       case 0: // Updates
       //TODO: Implement Updates Page
-        // return BlocProvider(
-        //   create: (context) => StatusCubit(),
-        //   child: const UpdatesPage(),
-        // );
+      // return BlocProvider(
+      //   create: (context) => StatusCubit(),
+      //   child: const UpdatesPage(),
+      // );
       case 1: // Calls
         return Column(
           children: [
             Center(
               child: Text(
                 appBarTitles[1].data!,
-                style: Theme.of(
-                  context,
-                ).textTheme.headlineMedium?.copyWith(fontFamily: "SFPro"),
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontFamily: "SFPro",
+                
+                ),
               ),
             ),
           ],
@@ -321,11 +337,10 @@ class _MainlayoutScreenState extends State<MainlayoutScreen> with TickerProvider
           ],
         );
       case 3: // Chats
-      //TODO: Implement Chats Page
-        // return BlocProvider(
-        //   create: (context) => ChatsCubit(),
-        //   child: const ChatsScreen(),
-        // );
+        return BlocProvider(
+          create: (context) => ChatsCubit(),
+          child: const ChatsScreen(),
+        );
       case 4: // Settings
         return BlocBuilder<AppCubit, AppState>(
           builder: (context, state) {

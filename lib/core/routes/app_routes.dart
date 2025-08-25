@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:what_s_up_app/core/env.dart';
 import 'package:what_s_up_app/features/chats/presentation/chats_screen.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/mainlayout_screen.dart';
 import 'package:what_s_up_app/features/splash/splash_screen.dart';
 import 'route_observer.dart';
 import 'route_paths.dart';
@@ -17,12 +18,14 @@ final routes = GoRouter(
   navigatorKey: navigatorKey,
   debugLogDiagnostics: true,
   observers: [
+    customGoRouterObserver,
     if (isDevEnvironment()) ChuckerFlutter.navigatorObserver,
     SentryNavigatorObserver(),
   ],
   routes: [
-    GoRoute(path: Routes.splashScreen, builder: (_, __) => SplashScreen()),
-    GoRoute(path: Routes.chatScreen, builder: (_, __) => ChatsScreen()),
+    GoRoute(path: Routes.splashScreen, builder: (context, state) => SplashScreen()),
+    GoRoute(path: Routes.chatScreen, builder: (context, state) => ChatsScreen()),
+    GoRoute(path: Routes.mainlayout, builder: (context, state) => MainlayoutScreen()),
 
   ],
 );

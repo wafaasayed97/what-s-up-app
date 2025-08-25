@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:what_s_up_app/core/routes/route_paths.dart';
-import 'package:what_s_up_app/core/update_app/check_version.dart';
 import 'package:what_s_up_app/core/widgets/app_asset.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,13 +21,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     animate().then((onValue) {
       Future.delayed(const Duration(seconds: 1)).then((onValue) {
-              context.push(Routes.chatScreen);
-        VersionChecker(
-          context: context,
-          remoteConfigService: FirebaseRemoteConfigService(),
-          updateDialogService: CupertinoUpdateDialogService(),
-          navigationService: AuthNavigationService(context),
-        ).checkAppVersion();
+        context.pushReplacement(Routes.mainlayout);
       });
     });
   }
@@ -59,8 +52,7 @@ class _SplashScreenState extends State<SplashScreen>
         child: SlideTransition(
           position: _animation,
           child: AppAsset(
-            assetName:'assets/images/WhatsApp.svg.webp',
-
+            assetName: 'assets/images/WhatsApp.svg.webp',
             height: 200.h,
             width: 200.w,
           ),

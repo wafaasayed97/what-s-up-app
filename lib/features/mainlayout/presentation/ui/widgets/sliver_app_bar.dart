@@ -4,13 +4,14 @@ import 'package:what_s_up_app/core/app_cubit/app_cubit.dart';
 import 'package:what_s_up_app/core/app_cubit/app_state.dart';
 import 'package:what_s_up_app/core/constants/strings.dart';
 import 'package:what_s_up_app/core/theme/light_colors.dart';
-import 'package:what_s_up_app/generated/l10n.dart';
+import 'package:what_s_up_app/features/mainlayout/presentation/ui/widgets/tab_bar_config.dart';
 
 class HomeSliverAppBar extends StatelessWidget {
   final bool isCollapsed;
   final TabAppBarConfig config;
   final List<Text> titles;
   final int currentIndex;
+  final Color titleColor;
 
   const HomeSliverAppBar({
     super.key,
@@ -18,6 +19,7 @@ class HomeSliverAppBar extends StatelessWidget {
     required this.config,
     required this.titles,
     required this.currentIndex,
+    required this.titleColor,
   });
 
   @override
@@ -26,13 +28,13 @@ class HomeSliverAppBar extends StatelessWidget {
       builder: (context, state) {
         return SliverAppBar(
           pinned: true,
-          expandedHeight: mainLayoutIntitalScreenIndex == 0 ? 120 : 153.0,
+          expandedHeight: mainLayoutIntitalScreenIndex == 0 ? 110 : 110.0,
           automaticallyImplyLeading: false,
           backgroundColor: context.read<AppCubit>().themeMode == ThemeMode.dark
               ? Colors.black.withAlpha(240)
               : Colors.white,
           bottom: isCollapsed ? _buildBorder(context) : null,
-          title: _buildTitle(context),
+          title: _buildTitle(context, titleColor),
           flexibleSpace: _buildFlexibleSpace(context),
         );
       },
@@ -58,7 +60,7 @@ class HomeSliverAppBar extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle(BuildContext context) {
+  Widget _buildTitle(BuildContext context, Color color) {
     return SizedBox(
       width: double.infinity,
       height: 54,
@@ -94,6 +96,7 @@ class HomeSliverAppBar extends StatelessWidget {
                   child: Text(
                     titles[currentIndex].data ?? '',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: color, // This uses the passed titleColor correctly
                       fontSize: 16.8,
                       fontWeight: FontWeight.w600,
                     ),
@@ -131,18 +134,16 @@ class HomeSliverAppBar extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.w700,
                       fontSize: 33.3,
-                      color: context.read<AppCubit>().themeMode == ThemeMode.dark
-                          ? Colors.white
-                          : Colors.black,
+                      color: titleColor,
                     ),
                   ),
                 if (!isCollapsed) const SizedBox(height: 10),
-                if (!isCollapsed && mainLayoutIntitalScreenIndex != 0)
-                  SearchWidget(
-                    hintText: currentIndex == 3
-                        ? S().askMetaAIOrSearch
-                        : S().search,
-                  ),
+                // if (!isCollapsed && mainLayoutIntitalScreenIndex != 0)
+                // SearchWidget(
+                //   hintText: currentIndex == 3
+                //       ? S().askMetaAIOrSearch
+                //       : S().search,
+                // ),
               ],
             ),
           ),

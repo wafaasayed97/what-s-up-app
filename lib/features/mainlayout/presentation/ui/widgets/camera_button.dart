@@ -10,9 +10,7 @@ class CameraButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Container(
           width: 30,
@@ -25,7 +23,7 @@ class CameraButton extends StatelessWidget {
                 : AppLightColors.iconBackground,
           ),
           child: Image.asset(
-           'assets/icons/camera_icon.png',
+            'assets/images/camera_icon.png',
             color: context.read<AppCubit>().themeMode != ThemeMode.dark
                 ? Colors.white
                 : Colors.black,
